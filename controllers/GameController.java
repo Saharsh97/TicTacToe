@@ -15,27 +15,7 @@ import java.util.List;
 public class GameController {
     GameService gameService = GameService.getInstance();
 
-    public Game createGame(int dimension, List<Player> players, List<WinningStrategy> winningStrategies) throws PlayerCountException, DuplicateSymbolException, BotCountException, DimensionException {
-        return gameService.createGame(dimension, players, winningStrategies);
-    }
-
     public void runGame(Game game){
         gameService.runGame(game);
-    }
-
-    public void displayBoard(Game game){
-        gameService.displayBoard(game);
-    }
-
-    public void makeMove(Game game){
-        gameService.makeMove(game);
-    }
-
-    public void checkWinner(Game game){
-        gameService.makeMove(game);
-    }
-
-    public void checkForUndo(Game game){
-        gameService.checkForUndo(game);
     }
 }

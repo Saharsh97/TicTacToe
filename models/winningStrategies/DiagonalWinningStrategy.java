@@ -12,7 +12,7 @@ import java.util.Map;
 public class DiagonalWinningStrategy extends MapWinningStrategy{
 
     public DiagonalWinningStrategy(List<Player> players){
-        super(2, players);
+        super(2, players);  // this creates its own count map.
     }
 
     @Override

@@ -35,7 +35,12 @@ public class Main {
         winningStrategies.add(new DiagonalWinningStrategy(players));
         winningStrategies.add(new CornersWinningStrategy());
 
-        Game game = gameController.createGame(dimension, players, winningStrategies);
+        Game game = Game.getBuilder().
+                setDimension(dimension).
+                setPlayers(players).
+                setWinningStrategies(winningStrategies).
+                build();
+
         gameController.runGame(game);
     }
 }

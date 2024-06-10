@@ -19,7 +19,7 @@ public class Game {
     private List<Player> players;
     private GameState gameState;
     private Player winner;
-    private List<Move> moves;
+    private List<Move> moves;   // for undo feature
     private int currentPlayerIndex;
     private List<WinningStrategy> winningStrategies;
 

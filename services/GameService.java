@@ -24,24 +24,18 @@ public class GameService {
         return INSTANCE;
     }
 
-    public Game createGame(int dimension, List<Player> players, List<WinningStrategy> winningStrategies) throws PlayerCountException, DuplicateSymbolException, BotCountException, DimensionException {
-        return Game.getBuilder().
-                setDimension(dimension).
-                setPlayers(players).
-                setWinningStrategies(winningStrategies).
-                build();
-    }
-
     public void runGame(Game game){
         System.out.println("game has been started");
         displayBoard(game);
         while(game.getGameState() == GameState.IN_PROGRESS){
             makeMove(game);
             displayBoard(game);
+            if(checkWinner(game)){
+                break;
+            }
             checkForUndo(game);
         }
 
-        displayBoard(game);
         if(game.getGameState() == GameState.COMPLETED){
             System.out.println("Game is completed. Winner is " + game.getWinner().getName());
         }
@@ -61,6 +55,7 @@ public class GameService {
 
         // make the player move.
         Board board = game.getBoard();
+        // this player could be bot or human. get the respective service that handles the move.
         PlayerService playerService = PlayerServiceFactory.getPlayerServiceGivenPlayer(currentPlayer);
         Move move = playerService.makeMove(currentPlayer, board);
         game.addMove(move);
@@ -85,8 +80,8 @@ public class GameService {
         game.setCurrentPlayerIndex(nextPlayerIndex);
     }
 
-    public void checkWinner(Game game){
-
+    public boolean checkWinner(Game game){
+        return game.getWinner() != null;
     }
 
     public void checkForUndo(Game game){
@@ -102,7 +97,6 @@ public class GameService {
         String input = scanner.next();
         if(input.equals("Y")){
             performUndo(game);
-            return;
         }
     }
 

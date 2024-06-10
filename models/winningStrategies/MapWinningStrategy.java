@@ -11,6 +11,8 @@ import java.util.Map;
 public abstract class MapWinningStrategy implements WinningStrategy{
     private int dimension;
     private Map<Integer, Map<Player, Integer>> countMap;
+    // this countMap is created for all 3 strategies => row, column, diagonal.
+    // all of them use the same rules for winning. just the key, rowValue, columnValue, diagonal number are different.
 
     public MapWinningStrategy(int dimension, List<Player> playerList){
         this.dimension = dimension;
